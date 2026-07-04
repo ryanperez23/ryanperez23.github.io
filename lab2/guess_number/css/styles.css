@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+
+    background-image: url("../img/bg.avif");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 30px;
+    margin-bottom: 40px;
+}
+
+h1 {
+    color: white;
+    font-size: 42px;
+}
+
+h2 {
+    color: white;
+    font-size: 22px;
+}
+
+#main {
+    background-color: rgba(255, 255, 255, 0.92);
+    width: 430px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px gray;
+    font-size: 18px;
+}
+
+input {
+    padding: 7px;
+    font-size: 16px;
+    width: 60px;
+    text-align: center;
+}
+
+button {
+    padding: 8px 15px;
+    font-size: 16px;
+    margin: 6px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ff5a1f;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #d94812;
+}
+
+#score {
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 18px;
+    margin-bottom: 15px;
+}
+
+#feedback {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#attemptsLeft,
+#guesses {
+    font-weight: bold;
+    color: #ff5a1f;
+}
+
+#wins,
+#losses {
+    font-size: 30px;
+    font-weight: bold;
+    color: #ff5a1f;
+}
