@@ -19,13 +19,15 @@
         <h1>Rick and Morty Character Search</h1>
 
         <p>
-            Search for characters by entering a name and selecting
-            an optional species.
+            Search for Rick and Morty characters by entering a name
+            and selecting an optional species.
         </p>
     </header>
 
     <main>
+
         <section class="search-section">
+            <h2>Search Characters</h2>
 
             <form id="searchForm">
 
@@ -56,7 +58,7 @@
                     </select>
                 </div>
 
-                <button type="submit">
+                <button type="submit" class="search-button">
                     Search Characters
                 </button>
 
@@ -64,18 +66,95 @@
 
             <p id="errorMessage"></p>
             <p id="resultMessage"></p>
+        </section>
 
+        <section class="character-guide">
+            <h2>Character Guide</h2>
+
+            <p>
+                Not sure who to search for? Click one of these
+                popular characters.
+            </p>
+
+            <div class="guide-buttons">
+
+                <button
+                    type="button"
+                    class="guide-button"
+                    data-name="Rick Sanchez"
+                >
+                    Rick Sanchez
+                </button>
+
+                <button
+                    type="button"
+                    class="guide-button"
+                    data-name="Morty Smith"
+                >
+                    Morty Smith
+                </button>
+
+                <button
+                    type="button"
+                    class="guide-button"
+                    data-name="Summer Smith"
+                >
+                    Summer Smith
+                </button>
+
+                <button
+                    type="button"
+                    class="guide-button"
+                    data-name="Beth Smith"
+                >
+                    Beth Smith
+                </button>
+
+                <button
+                    type="button"
+                    class="guide-button"
+                    data-name="Jerry Smith"
+                >
+                    Jerry Smith
+                </button>
+
+                <button
+                    type="button"
+                    class="guide-button"
+                    data-name="Birdperson"
+                >
+                    Birdperson
+                </button>
+
+                <button
+                    type="button"
+                    class="guide-button"
+                    data-name="Mr. Meeseeks"
+                >
+                    Mr. Meeseeks
+                </button>
+
+                <button
+                    type="button"
+                    class="guide-button"
+                    data-name="Squanchy"
+                >
+                    Squanchy
+                </button>
+
+            </div>
         </section>
 
         <section
             id="characterResults"
             class="character-grid"
         ></section>
+
     </main>
 
     <footer>
         <p>
-            Data provided by the Rick and Morty API.
+            Character information provided by the Rick and Morty API.
         </p>
     </footer>
 

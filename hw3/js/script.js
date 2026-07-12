@@ -1,16 +1,37 @@
-const searchForm = document.querySelector("#searchForm");
+const searchForm =
+    document.querySelector("#searchForm");
+
 const characterNameInput =
     document.querySelector("#characterName");
+
 const speciesMenu =
     document.querySelector("#species");
+
 const errorMessage =
     document.querySelector("#errorMessage");
+
 const resultMessage =
     document.querySelector("#resultMessage");
+
 const characterResults =
     document.querySelector("#characterResults");
 
-searchForm.addEventListener("submit", searchCharacters);
+const guideButtons =
+    document.querySelectorAll(".guide-button");
+
+
+searchForm.addEventListener(
+    "submit",
+    searchCharacters
+);
+
+
+for (const button of guideButtons) {
+    button.addEventListener(
+        "click",
+        selectGuideCharacter
+    );
+}
 
 
 async function searchCharacters(event) {
@@ -79,6 +100,7 @@ async function searchCharacters(event) {
     } catch (error) {
         resultMessage.textContent = "";
         errorMessage.textContent = error.message;
+
         console.error(error);
     }
 }
@@ -88,10 +110,14 @@ function displayCharacters(characters) {
     characterResults.innerHTML = "";
 
     for (const character of characters) {
-        const card = document.createElement("article");
+        const card =
+            document.createElement("article");
+
         card.classList.add("character-card");
 
-        const image = document.createElement("img");
+        const image =
+            document.createElement("img");
+
         image.src = character.image;
         image.alt = character.name;
 
@@ -102,7 +128,9 @@ function displayCharacters(characters) {
             "character-information"
         );
 
-        const name = document.createElement("h2");
+        const name =
+            document.createElement("h2");
+
         name.textContent = character.name;
 
         const status = createInformationLine(
@@ -139,21 +167,45 @@ function displayCharacters(characters) {
             location
         );
 
-        card.append(image, information);
+        card.append(
+            image,
+            information
+        );
+
         characterResults.appendChild(card);
     }
 }
 
 
 function createInformationLine(label, value) {
-    const paragraph = document.createElement("p");
+    const paragraph =
+        document.createElement("p");
 
-    const labelText = document.createElement("strong");
+    const labelText =
+        document.createElement("strong");
+
     labelText.textContent = `${label}: `;
 
-    const valueText = document.createTextNode(value);
+    const valueText =
+        document.createTextNode(value);
 
-    paragraph.append(labelText, valueText);
+    paragraph.append(
+        labelText,
+        valueText
+    );
 
     return paragraph;
+}
+
+
+function selectGuideCharacter(event) {
+    const characterName =
+        event.currentTarget.dataset.name;
+
+    characterNameInput.value =
+        characterName;
+
+    speciesMenu.value = "";
+
+    searchForm.requestSubmit();
 }
