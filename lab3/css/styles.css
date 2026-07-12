@@ -1,0 +1,355 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 45px 20px;
+    background: linear-gradient(
+        135deg,
+        #eef3f1 0%,
+        #f7f3ef 50%,
+        #edf1f3 100%
+    );
+    color: #34413f;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.page-wrapper {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    margin: 0 0 28px;
+    color: #607f7a;
+    font-family: "Arial Black", "Trebuchet MS", Arial, sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: center;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+form {
+    position: relative;
+    padding: 38px 42px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.92);
+    border: 1px solid #dce4e1;
+    border-radius: 22px;
+    box-shadow:
+        0 18px 45px rgba(75, 94, 91, 0.12),
+        0 3px 10px rgba(75, 94, 91, 0.06);
+}
+
+form::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 7px;
+    background: linear-gradient(
+        90deg,
+        #9bb8b1,
+        #d4b9a8,
+        #aebfc2
+    );
+    content: "";
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+
+.field-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.field-group label,
+.row-label,
+.fixed-label {
+    color: #3d4b48;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.field-group label {
+    flex-shrink: 0;
+}
+
+.row-label {
+    width: 95px;
+}
+
+.fixed-label {
+    width: 140px;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #3d4b48;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    height: 43px;
+    padding: 9px 13px;
+    background-color: #fcfdfc;
+    border: 1px solid #becdc9;
+    border-radius: 9px;
+    color: #34413f;
+    font-size: 15px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 220px;
+}
+
+select {
+    width: 220px;
+    cursor: pointer;
+}
+
+input[type="text"]:hover,
+input[type="password"]:hover,
+select:hover {
+    border-color: #9fb4af;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+select:focus {
+    background-color: #ffffff;
+    border-color: #86a8a0;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(134, 168, 160, 0.16);
+}
+
+input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #86a8a0;
+}
+
+.locationInfo {
+    position: relative;
+    margin: 4px 0 25px;
+    padding: 18px 22px;
+    background: linear-gradient(
+        135deg,
+        #edf0f1,
+        #e4e8e8
+    );
+    border: 1px solid #d9dfdf;
+    border-left: 5px solid #9bb8b1;
+    border-radius: 12px;
+    color: #3f4c4a;
+    line-height: 1.8;
+}
+
+.locationInfo p {
+    margin: 0;
+}
+
+.locationInfo span {
+    color: #59746f;
+    font-weight: 700;
+}
+
+#zipError {
+    color: #b45f5f;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.state-county-row {
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #e5e9e7;
+}
+
+.state-county-row .field-group {
+    justify-content: flex-start;
+}
+
+.align-inputs {
+    display: grid;
+    grid-template-columns: 140px 220px 1fr;
+    align-items: center;
+    gap: 14px;
+    min-height: 54px;
+    margin-bottom: 10px;
+}
+
+.align-inputs input {
+    width: 220px;
+}
+
+#usernameError,
+#suggestedPassword,
+#passwordError {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+#usernameError {
+    font-weight: 700;
+}
+
+#suggestedPassword {
+    color: #6c817d;
+    font-style: italic;
+}
+
+#passwordError {
+    color: #b45f5f;
+    font-weight: 700;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+button {
+    min-width: 145px;
+    padding: 13px 28px;
+    background: linear-gradient(
+        135deg,
+        #5f817a,
+        #496d66
+    );
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 7px 16px rgba(55, 88, 81, 0.25);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+button:hover {
+    background: linear-gradient(
+        135deg,
+        #4e716a,
+        #385c55
+    );
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(55, 88, 81, 0.32);
+}
+
+button:active {
+    background: #314f49;
+    transform: translateY(0);
+    box-shadow: 0 4px 10px rgba(55, 88, 81, 0.25);
+}
+@media (max-width: 760px) {
+    body {
+        padding: 28px 12px;
+    }
+
+    h1 {
+        font-size: 2.3rem;
+    }
+
+    form {
+        padding: 30px 22px;
+    }
+
+    .two-columns {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .field-group {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+    }
+
+    .field-group input,
+    .field-group select {
+        width: 100%;
+    }
+
+    .align-inputs {
+        grid-template-columns: 140px 1fr;
+    }
+
+    .align-inputs input {
+        width: 100%;
+    }
+
+    #usernameError,
+    #suggestedPassword,
+    #passwordError {
+        grid-column: 2;
+    }
+}
+
+@media (max-width: 520px) {
+    .row,
+    .field-group,
+    .align-inputs {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .row-label,
+    .fixed-label {
+        width: auto;
+    }
+
+    .radio-group {
+        margin-top: 4px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    select {
+        width: 100%;
+    }
+
+    #usernameError,
+    #suggestedPassword,
+    #passwordError {
+        width: 100%;
+    }
+}
