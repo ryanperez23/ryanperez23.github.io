@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Rick and Morty Character Search</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Rick and Morty Character Search</h1>
+
+        <p>
+            Search for characters by entering a name and selecting
+            an optional species.
+        </p>
+    </header>
+
+    <main>
+        <section class="search-section">
+
+            <form id="searchForm">
+
+                <div class="form-group">
+                    <label for="characterName">
+                        Character Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="characterName"
+                        placeholder="Example: Rick"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="species">
+                        Species
+                    </label>
+
+                    <select id="species">
+                        <option value="">All Species</option>
+                        <option value="Human">Human</option>
+                        <option value="Alien">Alien</option>
+                        <option value="Humanoid">Humanoid</option>
+                        <option value="Robot">Robot</option>
+                        <option value="Animal">Animal</option>
+                    </select>
+                </div>
+
+                <button type="submit">
+                    Search Characters
+                </button>
+
+            </form>
+
+            <p id="errorMessage"></p>
+            <p id="resultMessage"></p>
+
+        </section>
+
+        <section
+            id="characterResults"
+            class="character-grid"
+        ></section>
+    </main>
+
+    <footer>
+        <p>
+            Data provided by the Rick and Morty API.
+        </p>
+    </footer>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
