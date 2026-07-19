@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head", {
+    pageTitle: "Random Developer Profile"
+  }) %>
+
+  <body>
+    <%- include("partials/nav") %>
+
+    <main>
+      <section class="page-title">
+        <p class="eyebrow">Node package information</p>
+        <h1>Random Developer Profile</h1>
+
+        <p>
+          This profile is generated on the Express server using the
+          @faker-js/faker Node package.
+        </p>
+      </section>
+
+      <section class="profile-wrapper">
+        <article class="profile-card">
+          <div class="profile-avatar">
+            <%= developer.name.charAt(0) %>
+          </div>
+
+          <div class="profile-content">
+            <p class="profile-label">Generated developer</p>
+
+            <h2><%= developer.name %></h2>
+            <h3><%= developer.jobTitle %></h3>
+
+            <p class="profile-biography">
+              <%= developer.biography %>
+            </p>
+
+            <div class="profile-details">
+              <div>
+                <span>Email</span>
+                <p><%= developer.email %></p>
+              </div>
+
+              <div>
+                <span>Location</span>
+                <p>
+                  <%= developer.city %>,
+                  <%= developer.country %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <a href="/developer-profile" class="button-link">
+          Generate Another Profile
+        </a>
+      </section>
+
+      <section class="source-note">
+        <strong>Node package:</strong>
+        @faker-js/faker
+      </section>
+    </main>
+
+    <%- include("partials/footer") %>
+  </body>
+</html>

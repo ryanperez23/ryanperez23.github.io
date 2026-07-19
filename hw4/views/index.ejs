@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head", {
+    pageTitle: "Software Engineering and Web Development"
+  }) %>
+
+  <body>
+    <%- include("partials/nav") %>
+
+    <main>
+      <section class="page-title">
+        <p class="eyebrow">HW 4: Express</p>
+        <h1>Software Engineering and Web Development</h1>
+
+        <p>
+          Learn how planning, design, programming, and testing
+          work together to create useful software.
+        </p>
+      </section>
+
+      <section class="hero">
+        <article>
+          <h2>Overview</h2>
+
+          <p>
+            Software engineering is the process of designing,
+            building, testing, and maintaining software. Web
+            development is one part of software engineering that
+            focuses on websites and web applications.
+          </p>
+
+          <p>
+            A good website is not only about writing code. It also
+            needs planning, design, testing, and maintenance. These
+            steps help developers create websites that are useful,
+            organized, and easy to use.
+          </p>
+        </article>
+
+        <figure>
+          <img
+            src="/img/overview.jpg"
+            alt="Overview of web development"
+          >
+        </figure>
+      </section>
+
+      <section class="cards">
+        <article class="card">
+          <span class="card-number">01</span>
+          <h3>Planning</h3>
+
+          <p>
+            Developers plan the structure and goals before writing
+            code.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="card-number">02</span>
+          <h3>Design</h3>
+
+          <p>
+            Design helps users understand and enjoy the website.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="card-number">03</span>
+          <h3>Testing</h3>
+
+          <p>
+            Testing helps find errors before the website is
+            published.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <%- include("partials/footer") %>
+  </body>
+</html>

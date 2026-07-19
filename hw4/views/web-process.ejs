@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head", {
+    pageTitle: "Web Development Process"
+  }) %>
+
+  <body>
+    <%- include("partials/nav") %>
+
+    <main>
+      <section class="page-title">
+        <p class="eyebrow">From idea to website</p>
+        <h1>Web Development Process</h1>
+
+        <p>
+          Following an organized process helps developers create
+          websites that are easier to use and maintain.
+        </p>
+      </section>
+
+      <section class="two-column">
+        <article>
+          <h2>Steps in Web Development</h2>
+
+          <p>
+            Before coding, developers should understand the purpose
+            of the website and who will use it.
+          </p>
+
+          <ol class="process-list">
+            <li>Plan the website goal and content.</li>
+            <li>Create a layout or wireframe.</li>
+            <li>Write HTML for the structure.</li>
+            <li>Use CSS to style the page.</li>
+            <li>Test links, images, and layout.</li>
+            <li>Validate the HTML code.</li>
+            <li>Publish the website online.</li>
+          </ol>
+        </article>
+
+        <figure>
+          <img
+            src="/img/process.jpg"
+            alt="Web development process"
+          >
+        </figure>
+      </section>
+
+      <section class="info-box">
+        <h2>Why the Process Matters</h2>
+
+        <p>
+          Following a process saves time and reduces mistakes. It
+          also helps developers make websites that are easier to
+          update later.
+        </p>
+      </section>
+    </main>
+
+    <%- include("partials/footer") %>
+  </body>
+</html>

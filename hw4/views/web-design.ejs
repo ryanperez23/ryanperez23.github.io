@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head", {
+    pageTitle: "Web Design"
+  }) %>
+
+  <body>
+    <%- include("partials/nav") %>
+
+    <main>
+      <section class="page-title">
+        <p class="eyebrow">Useful and visually clear</p>
+        <h1>Web Design</h1>
+
+        <p>
+          Good design helps users understand the content and
+          navigate a website easily.
+        </p>
+      </section>
+
+      <section class="hero">
+        <article>
+          <h2>What Is Web Design?</h2>
+
+          <p>
+            Web design focuses on how a website looks and how users
+            interact with it. A website should be clear, readable,
+            and easy to navigate.
+          </p>
+
+          <p>
+            Good web design uses colors, fonts, spacing, images, and
+            layout to create a better user experience.
+          </p>
+        </article>
+
+        <figure>
+          <img
+            src="/img/design.jpg"
+            alt="Web design layout"
+          >
+        </figure>
+      </section>
+
+      <section class="cards">
+        <article class="card">
+          <span class="card-number">01</span>
+          <h3>Color</h3>
+
+          <p>
+            Colors can make a website feel professional, calm, or
+            creative.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="card-number">02</span>
+          <h3>Typography</h3>
+
+          <p>
+            Readable fonts help users understand the content better.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="card-number">03</span>
+          <h3>Layout</h3>
+
+          <p>
+            A clean layout helps users find information quickly.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <%- include("partials/footer") %>
+  </body>
+</html>

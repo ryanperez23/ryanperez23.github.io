@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head", {
+    pageTitle: "Software Engineering"
+  }) %>
+
+  <body>
+    <%- include("partials/nav") %>
+
+    <main>
+      <section class="page-title">
+        <p class="eyebrow">Building reliable systems</p>
+        <h1>Software Engineering</h1>
+
+        <p>
+          Software engineers combine technical skills, planning,
+          testing, and teamwork to solve problems.
+        </p>
+      </section>
+
+      <section class="two-column">
+        <article>
+          <h2>What Software Engineers Do</h2>
+
+          <p>
+            Software engineers use computer science concepts to
+            solve problems. They design systems, write code, test
+            programs, fix bugs, and improve software over time.
+          </p>
+
+          <p>
+            They also work with teams, use version control, and
+            follow project requirements. This helps make software
+            more reliable and easier to maintain.
+          </p>
+        </article>
+
+        <figure>
+          <img
+            src="/img/software.jpg"
+            alt="Software engineering workspace"
+          >
+        </figure>
+      </section>
+
+      <section class="info-box">
+        <h2>Common Software Engineering Skills</h2>
+
+        <ul class="skills-list">
+          <li>Problem solving</li>
+          <li>Programming</li>
+          <li>Testing and debugging</li>
+          <li>Version control with Git</li>
+          <li>Team communication</li>
+        </ul>
+      </section>
+    </main>
+
+    <%- include("partials/footer") %>
+  </body>
+</html>

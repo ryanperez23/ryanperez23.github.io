@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head", {
+    pageTitle: "Learning Resources"
+  }) %>
+
+  <body>
+    <%- include("partials/nav") %>
+
+    <main>
+      <section class="page-title">
+        <p class="eyebrow">Live Web API information</p>
+
+        <h1>Learning Resources</h1>
+
+        <p>
+          Explore books about software engineering. The book
+          information is retrieved from the Open Library API in the
+          Express backend.
+        </p>
+      </section>
+
+      <% if (errorMessage) { %>
+        <section class="message-box">
+          <h2>Information Unavailable</h2>
+          <p><%= errorMessage %></p>
+        </section>
+      <% } else { %>
+        <section class="repository-grid">
+          <% books.forEach((book) => { %>
+            <article class="repository-card">
+              <% if (book.cover_i) { %>
+                <img
+                  src="https://covers.openlibrary.org/b/id/<%= book.cover_i %>-M.jpg"
+                  alt="Cover of <%= book.title %>"
+                  class="book-cover"
+                >
+              <% } else { %>
+                <div class="book-cover-placeholder">
+                  No Cover
+                </div>
+              <% } %>
+
+              <h2><%= book.title %></h2>
+
+              <p>
+                <strong>Author:</strong>
+                <%= book.author_name
+                  ? book.author_name.join(", ")
+                  : "Unknown author" %>
+              </p>
+
+              <p>
+                <strong>First published:</strong>
+                <%= book.first_publish_year || "Not available" %>
+              </p>
+
+              <a
+                href="https://openlibrary.org<%= book.key %>"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="button-link"
+              >
+                View Book
+              </a>
+            </article>
+          <% }); %>
+        </section>
+      <% } %>
+
+      <section class="source-note">
+        <strong>Web API:</strong>
+        Open Library Search API
+      </section>
+    </main>
+
+    <%- include("partials/footer") %>
+  </body>
+</html>
