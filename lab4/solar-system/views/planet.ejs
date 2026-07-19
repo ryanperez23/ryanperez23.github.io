@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head.ejs", {
+    pageTitle: `${planetName} | Solar System`
+  }) %>
+
+  <body>
+    <%- include("partials/nav.ejs") %>
+
+    <main class="container page-content">
+      <section class="page-heading">
+        <p class="eyebrow">Planet profile</p>
+        <h1><%= planetName %></h1>
+      </section>
+
+      <section class="planet-navigation-wrapper">
+        <a
+          href="/planet?planetName=<%= previousPlanet %>"
+          class="planet-arrow planet-arrow-left"
+          aria-label="View <%= previousPlanet %>"
+          title="<%= previousPlanet %>"
+        >
+          <span class="arrow-symbol">←</span>
+
+          <span class="arrow-planet">
+            <%= previousPlanet %>
+          </span>
+        </a>
+
+        <section class="planet-card">
+          <div class="row g-0">
+            <div class="col-lg-5 planet-image-column">
+              <img
+                src="<%= planetImage %>"
+                alt="Planet <%= planetName %>"
+                class="planet-image"
+                onerror="this.src='https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1000&q=80';"
+              >
+            </div>
+
+            <div class="col-lg-7 planet-information">
+              <h2>About <%= planetName %></h2>
+
+              <% if (planetInfo.description) { %>
+                <p class="planet-description">
+                  <%= planetInfo.description %>
+                </p>
+              <% } %>
+
+              <div class="information-grid">
+                <% Object.entries(planetInfo).forEach(
+                  ([property, value]) => {
+                %>
+                  <% if (
+                    property !== "image" &&
+                    property !== "description" &&
+                    value !== undefined &&
+                    value !== null
+                  ) { %>
+                    <article class="information-item">
+                      <h3>
+                        <%= property
+                          .replace(/([A-Z])/g, " $1")
+                          .replace(/_/g, " ")
+                          .replace(
+                            /^./,
+                            (letter) => letter.toUpperCase()
+                          ) %>
+                      </h3>
+
+                      <% if (
+                        property.toLowerCase().includes("link") ||
+                        property.toLowerCase().includes("url")
+                      ) { %>
+                        <p>
+                          <a
+                            href="<%= value %>"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Visit website
+                          </a>
+                        </p>
+                      <% } else { %>
+                        <p>
+                          <%= Array.isArray(value)
+                            ? value.join(", ")
+                            : value %>
+                        </p>
+                      <% } %>
+                    </article>
+                  <% } %>
+                <% }); %>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <a
+          href="/planet?planetName=<%= nextPlanet %>"
+          class="planet-arrow planet-arrow-right"
+          aria-label="View <%= nextPlanet %>"
+          title="<%= nextPlanet %>"
+        >
+          <span class="arrow-planet">
+            <%= nextPlanet %>
+          </span>
+
+          <span class="arrow-symbol">→</span>
+        </a>
+      </section>
+    </main>
+
+    <%- include("partials/footer.ejs") %>
+  </body>
+</html>

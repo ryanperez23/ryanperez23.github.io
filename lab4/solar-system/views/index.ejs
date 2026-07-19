@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head.ejs", { pageTitle: "Solar System" }) %>
+
+  <body
+    class="home-page"
+    style="background-image: linear-gradient(
+      rgba(3, 8, 20, 0.55),
+      rgba(3, 8, 20, 0.82)
+    ), url('<%= image %>?auto=format&fit=crop&w=2000&q=85');"
+  >
+    <%- include("partials/nav.ejs") %>
+
+    <main class="home-content container">
+      <section class="hero-section">
+        <p class="eyebrow">Explore our cosmic neighborhood</p>
+
+        <h1>The Solar System</h1>
+
+        <p class="hero-description">
+          Learn about the planets that orbit our Sun, from Mercury
+          to Neptune.
+        </p>
+
+        <div class="hero-buttons">
+          <a
+            class="btn btn-primary btn-lg"
+            href="/planet?planetName=Earth"
+          >
+            Explore the Planets
+          </a>
+
+          <a class="btn btn-outline-light btn-lg" href="/nasa">
+            NASA Picture of the Day
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <%- include("partials/footer.ejs") %>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "solar-system",
+  "version": "1.0.0",
+  "description": "Solar System Express App",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "keywords": [],
+  "author": "Ryan Perez",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "node-fetch": "^3.3.2",
+    "npm-solarsystem": "^1.0.2"
+  }
+}

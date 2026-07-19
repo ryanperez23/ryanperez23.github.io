@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head.ejs", {
+    pageTitle: "Page Not Found"
+  }) %>
+
+  <body>
+    <%- include("partials/nav.ejs") %>
+
+    <main class="container error-page">
+      <section>
+        <p class="error-number">404</p>
+        <h1>Lost in Space</h1>
+        <p><%= message %></p>
+
+        <a class="btn btn-primary" href="/">
+          Return Home
+        </a>
+      </section>
+    </main>
+
+    <%- include("partials/footer.ejs") %>
+  </body>
+</html>

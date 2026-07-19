@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head.ejs", {
+    pageTitle: "NASA Picture of the Day"
+  }) %>
+
+  <body>
+    <%- include("partials/nav.ejs") %>
+
+    <main class="container page-content">
+      <section class="page-heading">
+        <p class="eyebrow">Astronomy Picture of the Day</p>
+        <h1><%= nasaData.title %></h1>
+
+        <p class="picture-date">
+          <%= nasaData.date %>
+        </p>
+      </section>
+
+      <section class="nasa-card">
+        <% if (nasaData.media_type === "image") { %>
+          <img
+            src="<%= nasaData.hdurl || nasaData.url %>"
+            alt="<%= nasaData.title %>"
+            class="nasa-image"
+          >
+        <% } else { %>
+          <div class="video-container">
+            <iframe
+              src="<%= nasaData.url %>"
+              title="<%= nasaData.title %>"
+              allowfullscreen>
+            </iframe>
+          </div>
+        <% } %>
+
+        <div class="nasa-information">
+          <h2>About This Picture</h2>
+          <p><%= nasaData.explanation %></p>
+
+          <% if (nasaData.copyright) { %>
+            <p class="copyright">
+              Image credit: <%= nasaData.copyright %>
+            </p>
+          <% } %>
+        </div>
+      </section>
+    </main>
+
+    <%- include("partials/footer.ejs") %>
+  </body>
+</html>
