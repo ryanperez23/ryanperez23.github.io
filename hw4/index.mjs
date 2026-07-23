@@ -1,93 +1,243 @@
 import express from "express";
-import fetch from "node-fetch";
-import { faker } from "@faker-js/faker";
+import mysql from "mysql2/promise";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  res.render("index", {
-    currentPage: "overview"
-  });
+// Database connection pool
+// The real values will be added in Render.
+const pool = mysql.createPool({
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT) || 3306,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    connectionLimit: 10,
+    waitForConnections: true
 });
 
-app.get("/web-process", (req, res) => {
-  res.render("web-process", {
-    currentPage: "process"
-  });
-});
+// Home page
+app.get("/", async (req, res) => {
+    try {
+        const authorSql = `
+            SELECT authorId, firstName, lastName
+            FROM q_authors
+            ORDER BY lastName, firstName
+        `;
 
-app.get("/web-design", (req, res) => {
-  res.render("web-design", {
-    currentPage: "design"
-  });
-});
+        const categorySql = `
+            SELECT DISTINCT category
+            FROM q_quotes
+            ORDER BY category
+        `;
 
-app.get("/software-engineering", (req, res) => {
-  res.render("software-engineering", {
-    currentPage: "software"
-  });
-});
+        const [authorsResult, categoriesResult] = await Promise.all([
+            pool.query(authorSql),
+            pool.query(categorySql)
+        ]);
 
-app.get("/resources", async (req, res) => {
-  try {
-    const apiUrl =
-      "https://openlibrary.org/search.json" +
-      "?q=software+engineering" +
-      "&fields=key,title,author_name,first_publish_year,cover_i" +
-      "&limit=6";
-
-    const response = await fetch(apiUrl);
-
-    if (!response.ok) {
-      throw new Error(
-        "Unable to retrieve information from Open Library."
-      );
+        res.render("index", {
+            authors: authorsResult[0],
+            categories: categoriesResult[0]
+        });
+    } catch (err) {
+        console.error("Home page error:", err);
+        res.status(500).send("Unable to load the home page");
     }
-
-    const data = await response.json();
-
-    res.render("resources", {
-      currentPage: "resources",
-      books: data.docs,
-      errorMessage: null
-    });
-  } catch (error) {
-    res.render("resources", {
-      currentPage: "resources",
-      books: [],
-      errorMessage:
-        "The learning resources are currently unavailable."
-    });
-  }
 });
 
-app.get("/developer-profile", (req, res) => {
-  const developer = {
-    name: faker.person.fullName(),
-    jobTitle: faker.person.jobTitle(),
-    email: faker.internet.email(),
-    city: faker.location.city(),
-    country: faker.location.country(),
-    biography: faker.person.bio()
-  };
-
-  res.render("developer-profile", {
-    currentPage: "developer",
-    developer
-  });
+// Database connection test
+app.get("/dbTest", async (req, res) => {
+    try {
+        const [rows] = await pool.query("SELECT CURDATE()");
+        res.send(rows);
+    } catch (err) {
+        console.error("Database error:", err);
+        res.status(500).send("Database error");
+    }
 });
 
-app.use((req, res) => {
-  res.status(404).render("error", {
-    currentPage: "",
-    message: "The requested page was not found."
-  });
+// Search quotes by keyword
+app.get("/searchByKeyword", async (req, res) => {
+    try {
+        const keyword = String(req.query.keyword || "").trim();
+
+        const sql = `
+            SELECT
+                q_quotes.authorId,
+                q_authors.firstName,
+                q_authors.lastName,
+                q_quotes.quote,
+                q_quotes.category,
+                q_quotes.likes
+            FROM q_quotes
+            INNER JOIN q_authors
+                ON q_quotes.authorId = q_authors.authorId
+            WHERE q_quotes.quote LIKE ?
+            ORDER BY q_authors.lastName, q_quotes.quote
+        `;
+
+        const [rows] = await pool.query(sql, [`%${keyword}%`]);
+
+        res.render("results", {
+            title: `Results for "${keyword}"`,
+            quotes: rows
+        });
+    } catch (err) {
+        console.error("Keyword search error:", err);
+        res.status(500).send("Keyword search error");
+    }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server started at http://localhost:${PORT}`);
+// Search quotes by author
+app.get("/searchByAuthor", async (req, res) => {
+    try {
+        const authorId = req.query.authorId;
+
+        const sql = `
+            SELECT
+                q_quotes.authorId,
+                q_authors.firstName,
+                q_authors.lastName,
+                q_quotes.quote,
+                q_quotes.category,
+                q_quotes.likes
+            FROM q_quotes
+            INNER JOIN q_authors
+                ON q_quotes.authorId = q_authors.authorId
+            WHERE q_quotes.authorId = ?
+            ORDER BY q_quotes.quote
+        `;
+
+        const [rows] = await pool.query(sql, [authorId]);
+
+        const authorName =
+            rows.length > 0
+                ? `${rows[0].firstName} ${rows[0].lastName}`
+                : "Selected Author";
+
+        res.render("results", {
+            title: `Quotes by ${authorName}`,
+            quotes: rows
+        });
+    } catch (err) {
+        console.error("Author search error:", err);
+        res.status(500).send("Author search error");
+    }
+});
+
+// Search quotes by category
+app.get("/searchByCategory", async (req, res) => {
+    try {
+        const category = req.query.category;
+
+        const sql = `
+            SELECT
+                q_quotes.authorId,
+                q_authors.firstName,
+                q_authors.lastName,
+                q_quotes.quote,
+                q_quotes.category,
+                q_quotes.likes
+            FROM q_quotes
+            INNER JOIN q_authors
+                ON q_quotes.authorId = q_authors.authorId
+            WHERE q_quotes.category = ?
+            ORDER BY q_authors.lastName, q_quotes.quote
+        `;
+
+        const [rows] = await pool.query(sql, [category]);
+
+        res.render("results", {
+            title: `${category} Quotes`,
+            quotes: rows
+        });
+    } catch (err) {
+        console.error("Category search error:", err);
+        res.status(500).send("Category search error");
+    }
+});
+
+// Search quotes by likes range
+app.get("/searchByLikes", async (req, res) => {
+    try {
+        const minimumLikes = Number(req.query.minimumLikes);
+        const maximumLikes = Number(req.query.maximumLikes);
+
+        if (
+            !Number.isFinite(minimumLikes) ||
+            !Number.isFinite(maximumLikes) ||
+            minimumLikes < 0 ||
+            maximumLikes < 0 ||
+            minimumLikes > maximumLikes
+        ) {
+            return res.status(400).send("Enter a valid likes range");
+        }
+
+        const sql = `
+            SELECT
+                q_quotes.authorId,
+                q_authors.firstName,
+                q_authors.lastName,
+                q_quotes.quote,
+                q_quotes.category,
+                q_quotes.likes
+            FROM q_quotes
+            INNER JOIN q_authors
+                ON q_quotes.authorId = q_authors.authorId
+            WHERE q_quotes.likes BETWEEN ? AND ?
+            ORDER BY q_quotes.likes DESC, q_authors.lastName
+        `;
+
+        const [rows] = await pool.query(sql, [
+            minimumLikes,
+            maximumLikes
+        ]);
+
+        res.render("results", {
+            title: `Quotes with ${minimumLikes}–${maximumLikes} Likes`,
+            quotes: rows
+        });
+    } catch (err) {
+        console.error("Likes search error:", err);
+        res.status(500).send("Likes search error");
+    }
+});
+
+// Local API for author information
+app.get("/api/author/:id", async (req, res) => {
+    try {
+        const authorId = req.params.id;
+
+        const sql = `
+            SELECT *
+            FROM q_authors
+            WHERE authorId = ?
+        `;
+
+        const [rows] = await pool.query(sql, [authorId]);
+
+        if (rows.length === 0) {
+            return res.status(404).send({
+                error: "Author not found"
+            });
+        }
+
+        res.send(rows);
+    } catch (err) {
+        console.error("Author API error:", err);
+
+        res.status(500).send({
+            error: "Unable to retrieve author information"
+        });
+    }
+});
+
+// Start the server
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Express server running on port ${PORT}`);
 });
