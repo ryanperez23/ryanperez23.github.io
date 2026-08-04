@@ -1,0 +1,129 @@
+<%- include("partials/header.ejs") %>
+
+<body>
+
+    <main class="container py-5">
+
+        <header class="results-header mb-4">
+            <div>
+                <h1 class="display-6 fw-bold">
+                    <%= heading %>
+                </h1>
+
+                <p class="text-secondary mb-0">
+                    Click an author's name to see more information.
+                </p>
+            </div>
+
+            <a href="/" class="btn btn-outline-primary">
+                Back to Search
+            </a>
+        </header>
+
+        <% if (message) { %>
+
+            <div class="alert alert-warning">
+                <%= message %>
+            </div>
+
+        <% } %>
+
+        <% if (!message && quotes.length === 0) { %>
+
+            <div class="alert alert-info">
+                No quotes were found.
+            </div>
+
+        <% } %>
+
+        <section class="quotes-list">
+
+            <% for (const item of quotes) { %>
+
+                <article class="quote-card">
+
+                    <blockquote class="mb-3">
+                        “<%= item.quote %>”
+                    </blockquote>
+
+                    <a
+                        href="#"
+                        class="author-link"
+                        data-author-id="<%= item.authorId %>"
+                    >
+                        — <%= item.firstName %>
+                        <%= item.lastName %>
+                    </a>
+
+                    <div class="quote-details mt-3">
+                        <span class="badge text-bg-light">
+                            <%= item.category %>
+                        </span>
+
+                        <span>
+                            <%= item.likes ?? 0 %> likes
+                        </span>
+                    </div>
+
+                </article>
+
+            <% } %>
+
+        </section>
+
+    </main>
+
+    <!-- Author Information Modal -->
+    <div
+        class="modal fade"
+        id="authorModal"
+        tabindex="-1"
+        aria-labelledby="authorModalLabel"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h2
+                        class="modal-title fs-5"
+                        id="authorModalLabel"
+                    >
+                        Author Information
+                    </h2>
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+
+                <div class="modal-body">
+                    <div id="authorInfo">
+                        Select an author to view their information.
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >
+                        Close
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <%- include("partials/footer.ejs") %>
+
+    <script src="/js/scripts.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+<%- include("partials/header.ejs") %>
+
+<body>
+
+    <main class="container py-5">
+
+        <header class="text-center mb-5">
+            <h1 class="display-5 fw-bold">Quote Finder</h1>
+            <p class="text-secondary">
+                Search famous quotes by keyword, author, category, or likes.
+            </p>
+        </header>
+
+        <section class="search-card">
+
+            <form
+                action="/searchByKeyword"
+                method="GET"
+                class="search-form"
+            >
+                <label for="keyword" class="form-label">
+                    Keyword
+                </label>
+
+                <div class="input-group">
+                    <input
+                        type="text"
+                        id="keyword"
+                        name="keyword"
+                        class="form-control"
+                        placeholder="Enter a keyword"
+                        required
+                    >
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Search by Keyword
+                    </button>
+                </div>
+            </form>
+
+            <form
+                action="/searchByAuthor"
+                method="GET"
+                class="search-form"
+            >
+                <label for="authorId" class="form-label">
+                    Author
+                </label>
+
+                <div class="input-group">
+                    <select
+                        id="authorId"
+                        name="authorId"
+                        class="form-select"
+                        required
+                    >
+                        <% for (const author of authors) { %>
+
+                            <option value="<%= author.authorId %>">
+                                <%= author.firstName %>
+                                <%= author.lastName %>
+                            </option>
+
+                        <% } %>
+                    </select>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Search by Author
+                    </button>
+                </div>
+            </form>
+
+            <form
+                action="/searchByCategory"
+                method="GET"
+                class="search-form"
+            >
+                <label for="category" class="form-label">
+                    Category
+                </label>
+
+                <div class="input-group">
+                    <select
+                        id="category"
+                        name="category"
+                        class="form-select"
+                        required
+                    >
+                        <% for (const item of categories) { %>
+
+                            <option value="<%= item.category %>">
+                                <%= item.category %>
+                            </option>
+
+                        <% } %>
+                    </select>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Search by Category
+                    </button>
+                </div>
+            </form>
+
+            <form
+                action="/searchByLikes"
+                method="GET"
+                class="search-form"
+            >
+                <label class="form-label">
+                    Likes Range
+                </label>
+
+                <div class="likes-grid">
+                    <input
+                        type="number"
+                        id="minimumLikes"
+                        name="minimumLikes"
+                        class="form-control"
+                        placeholder="Minimum"
+                        min="0"
+                        required
+                    >
+
+                    <input
+                        type="number"
+                        id="maximumLikes"
+                        name="maximumLikes"
+                        class="form-control"
+                        placeholder="Maximum"
+                        min="0"
+                        required
+                    >
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Search by Likes
+                    </button>
+                </div>
+            </form>
+
+        </section>
+
+    </main>
+
+    <%- include("partials/footer.ejs") %>
+
+</body>
+
+</html>
