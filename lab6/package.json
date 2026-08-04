@@ -1,0 +1,14 @@
+{
+  "name": "lab6",
+  "version": "1.0.0",
+  "description": "Famous Quotes CRUD Admin",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.3"
+  }
+}

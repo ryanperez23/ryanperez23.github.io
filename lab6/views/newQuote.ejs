@@ -1,0 +1,99 @@
+<%- include("partials/header.ejs") %>
+
+<section class="page-card">
+
+    <h1>Add New Quote</h1>
+
+    <% if (message) { %>
+        <div class="success-message">
+            <%= message %>
+        </div>
+    <% } %>
+
+    <form
+        method="POST"
+        action="/quote/new"
+        class="data-form"
+    >
+
+        <div class="form-grid">
+
+            <div class="full-width">
+                <label for="quote">Quote</label>
+
+                <textarea
+                    id="quote"
+                    name="quote"
+                    rows="5"
+                    maxlength="200"
+                    required
+                ></textarea>
+            </div>
+
+            <div>
+                <label for="authorId">Author</label>
+
+                <select
+                    id="authorId"
+                    name="authorId"
+                    required
+                >
+                    <option value="">Select an author</option>
+
+                    <% for (const author of authors) { %>
+
+                        <option value="<%= author.authorId %>">
+                            <%= author.firstName %>
+                            <%= author.lastName %>
+                        </option>
+
+                    <% } %>
+
+                </select>
+            </div>
+
+            <div>
+                <label for="category">Category</label>
+
+                <select
+                    id="category"
+                    name="category"
+                    required
+                >
+                    <option value="">Select a category</option>
+
+                    <% for (const item of categories) { %>
+
+                        <option value="<%= item.category %>">
+                            <%= item.category %>
+                        </option>
+
+                    <% } %>
+
+                </select>
+            </div>
+
+            <div>
+                <label for="likes">Likes</label>
+
+                <input
+                    type="number"
+                    id="likes"
+                    name="likes"
+                    min="0"
+                    value="0"
+                    required
+                >
+            </div>
+
+        </div>
+
+        <button type="submit">
+            Add Quote
+        </button>
+
+    </form>
+
+</section>
+
+<%- include("partials/footer.ejs") %>

@@ -1,0 +1,86 @@
+<%- include("partials/header.ejs") %>
+
+<section class="page-card">
+
+    <div class="page-heading">
+
+        <h1>Authors</h1>
+
+        <a href="/author/new" class="button-link">
+            Add New Author
+        </a>
+
+    </div>
+
+    <% if (authors.length === 0) { %>
+
+        <p>No authors found.</p>
+
+    <% } else { %>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Author</th>
+                        <th>Profession</th>
+                        <th>Country</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <% for (const author of authors) { %>
+
+                        <tr>
+
+                            <td>
+                                <%= author.firstName %>
+                                <%= author.lastName %>
+                            </td>
+
+                            <td>
+                                <%= author.profession %>
+                            </td>
+
+                            <td>
+                                <%= author.country %>
+                            </td>
+
+                            <td class="actions">
+
+                                <a
+                                    href="/author/edit?authorId=<%= author.authorId %>"
+                                    class="edit-link"
+                                >
+                                    Edit
+                                </a>
+
+                                <a
+                                    href="/author/delete?authorId=<%= author.authorId %>"
+                                    class="delete-link"
+                                    onclick="return confirm('Delete this author?')"
+                                >
+                                    Delete
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    <% } %>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    <% } %>
+
+</section>
+
+<%- include("partials/footer.ejs") %>

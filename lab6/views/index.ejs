@@ -1,0 +1,37 @@
+<%- include("partials/header.ejs") %>
+
+<section class="page-card">
+
+    <h1>Famous Quotes - Admin Section</h1>
+
+    <p class="subtitle">
+        Manage authors and famous quotes.
+    </p>
+
+    <div class="action-grid">
+
+        <a href="/authors" class="action-card">
+            <span class="action-icon">👤</span>
+            <strong>Display Authors</strong>
+        </a>
+
+        <a href="/author/new" class="action-card green">
+            <span class="action-icon">➕</span>
+            <strong>Add Authors</strong>
+        </a>
+
+        <a href="/quotes" class="action-card">
+            <span class="action-icon">📋</span>
+            <strong>Display Quotes</strong>
+        </a>
+
+        <a href="/quote/new" class="action-card green">
+            <span class="action-icon">❝</span>
+            <strong>Add Quotes</strong>
+        </a>
+
+    </div>
+
+</section>
+
+<%- include("partials/footer.ejs") %>

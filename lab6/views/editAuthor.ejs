@@ -1,0 +1,150 @@
+<%- include("partials/header.ejs") %>
+
+<section class="page-card">
+
+    <h1>Edit Author</h1>
+
+    <form
+        method="POST"
+        action="/author/edit"
+        class="data-form"
+    >
+
+        <input
+            type="hidden"
+            name="authorId"
+            value="<%= author.authorId %>"
+        >
+
+        <div class="form-grid">
+
+            <div>
+                <label for="firstName">First Name</label>
+
+                <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    value="<%= author.firstName %>"
+                    required
+                >
+            </div>
+
+            <div>
+                <label for="lastName">Last Name</label>
+
+                <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    value="<%= author.lastName %>"
+                    required
+                >
+            </div>
+
+            <div>
+                <label for="dob">Date of Birth</label>
+
+                <input
+                    type="date"
+                    id="dob"
+                    name="dob"
+                    value="<%= author.dobISO %>"
+                    required
+                >
+            </div>
+
+            <div>
+                <label for="dod">Date of Death</label>
+
+                <input
+                    type="date"
+                    id="dod"
+                    name="dod"
+                    value="<%= author.dodISO || '' %>"
+                >
+            </div>
+
+            <div>
+                <label for="sex">Sex</label>
+
+                <select
+                    id="sex"
+                    name="sex"
+                    required
+                >
+                    <option
+                        value="M"
+                        <%= author.sex === "M" ? "selected" : "" %>
+                    >
+                        Male
+                    </option>
+
+                    <option
+                        value="F"
+                        <%= author.sex === "F" ? "selected" : "" %>
+                    >
+                        Female
+                    </option>
+                </select>
+            </div>
+
+            <div>
+                <label for="profession">Profession</label>
+
+                <input
+                    type="text"
+                    id="profession"
+                    name="profession"
+                    value="<%= author.profession %>"
+                    required
+                >
+            </div>
+
+            <div>
+                <label for="country">Country</label>
+
+                <input
+                    type="text"
+                    id="country"
+                    name="country"
+                    value="<%= author.country %>"
+                    required
+                >
+            </div>
+
+            <div>
+                <label for="portrait">Portrait URL</label>
+
+                <input
+                    type="url"
+                    id="portrait"
+                    name="portrait"
+                    value="<%= author.portrait %>"
+                    required
+                >
+            </div>
+
+            <div class="full-width">
+                <label for="biography">Biography</label>
+
+                <textarea
+                    id="biography"
+                    name="biography"
+                    rows="7"
+                    maxlength="500"
+                    required
+                ><%= author.biography %></textarea>
+            </div>
+
+        </div>
+
+        <button type="submit">
+            Update Author
+        </button>
+
+    </form>
+
+</section>
+
+<%- include("partials/footer.ejs") %>

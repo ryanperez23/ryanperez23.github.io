@@ -1,0 +1,133 @@
+<%- include("partials/header.ejs") %>
+
+<section class="page-card">
+
+    <h1>Add New Author</h1>
+
+    <% if (message) { %>
+        <div class="success-message">
+            <%= message %>
+        </div>
+    <% } %>
+
+    <form
+        method="POST"
+        action="/author/new"
+        class="data-form"
+    >
+
+        <div class="form-grid">
+
+            <div>
+                <label for="firstName">First Name</label>
+
+                <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    required
+                >
+            </div>
+
+            <div>
+                <label for="lastName">Last Name</label>
+
+                <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    required
+                >
+            </div>
+
+            <div>
+                <label for="dob">Date of Birth</label>
+
+                <input
+                    type="date"
+                    id="dob"
+                    name="dob"
+                    required
+                >
+            </div>
+
+            <div>
+                <label for="dod">Date of Death</label>
+
+                <input
+                    type="date"
+                    id="dod"
+                    name="dod"
+                >
+            </div>
+
+            <div>
+                <label for="sex">Sex</label>
+
+                <select
+                    id="sex"
+                    name="sex"
+                    required
+                >
+                    <option value="">Select</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="profession">Profession</label>
+
+                <input
+                    type="text"
+                    id="profession"
+                    name="profession"
+                    required
+                >
+            </div>
+
+            <div>
+                <label for="country">Country</label>
+
+                <input
+                    type="text"
+                    id="country"
+                    name="country"
+                    required
+                >
+            </div>
+
+            <div>
+                <label for="portrait">Portrait URL</label>
+
+                <input
+                    type="url"
+                    id="portrait"
+                    name="portrait"
+                    required
+                >
+            </div>
+
+            <div class="full-width">
+                <label for="biography">Biography</label>
+
+                <textarea
+                    id="biography"
+                    name="biography"
+                    rows="7"
+                    maxlength="500"
+                    required
+                ></textarea>
+            </div>
+
+        </div>
+
+        <button type="submit">
+            Add Author
+        </button>
+
+    </form>
+
+</section>
+
+<%- include("partials/footer.ejs") %>

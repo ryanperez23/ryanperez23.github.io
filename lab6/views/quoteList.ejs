@@ -1,0 +1,95 @@
+<%- include("partials/header.ejs") %>
+
+<section class="page-card">
+
+    <div class="page-heading">
+
+        <h1>Quotes</h1>
+
+        <a href="/quote/new" class="button-link">
+            Add New Quote
+        </a>
+
+    </div>
+
+    <% if (quotes.length === 0) { %>
+
+        <p>No quotes found.</p>
+
+    <% } else { %>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Quote</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                        <th>Likes</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <% for (const item of quotes) { %>
+
+                        <tr>
+
+                            <td class="quote-column">
+                                <%= item.quote %>
+                            </td>
+
+                            <td>
+                                <% if (item.firstName) { %>
+                                    <%= item.firstName %>
+                                    <%= item.lastName %>
+                                <% } else { %>
+                                    Unknown Author
+                                <% } %>
+                            </td>
+
+                            <td>
+                                <%= item.category %>
+                            </td>
+
+                            <td>
+                                <%= item.likes %>
+                            </td>
+
+                            <td class="actions">
+
+                                <a
+                                    href="/quote/edit?quoteId=<%= item.quoteId %>"
+                                    class="edit-link"
+                                >
+                                    Edit
+                                </a>
+
+                                <a
+                                    href="/quote/delete?quoteId=<%= item.quoteId %>"
+                                    class="delete-link"
+                                    onclick="return confirm('Delete this quote?')"
+                                >
+                                    Delete
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    <% } %>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    <% } %>
+
+</section>
+
+<%- include("partials/footer.ejs") %>

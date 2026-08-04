@@ -1,0 +1,107 @@
+<%- include("partials/header.ejs") %>
+
+<section class="page-card">
+
+    <h1>Edit Quote</h1>
+
+    <form
+        method="POST"
+        action="/quote/edit"
+        class="data-form"
+    >
+
+        <input
+            type="hidden"
+            name="quoteId"
+            value="<%= quoteInfo.quoteId %>"
+        >
+
+        <div class="form-grid">
+
+            <div class="full-width">
+                <label for="quote">Quote</label>
+
+                <textarea
+                    id="quote"
+                    name="quote"
+                    rows="5"
+                    maxlength="200"
+                    required
+                ><%= quoteInfo.quote %></textarea>
+            </div>
+
+            <div>
+                <label for="authorId">Author</label>
+
+                <select
+                    id="authorId"
+                    name="authorId"
+                    required
+                >
+
+                    <% for (const author of authors) { %>
+
+                        <option
+                            value="<%= author.authorId %>"
+                            <%= Number(author.authorId) === Number(quoteInfo.authorId)
+                                ? "selected"
+                                : "" %>
+                        >
+                            <%= author.firstName %>
+                            <%= author.lastName %>
+                        </option>
+
+                    <% } %>
+
+                </select>
+            </div>
+
+            <div>
+                <label for="category">Category</label>
+
+                <select
+                    id="category"
+                    name="category"
+                    required
+                >
+
+                    <% for (const item of categories) { %>
+
+                        <option
+                            value="<%= item.category %>"
+                            <%= item.category === quoteInfo.category
+                                ? "selected"
+                                : "" %>
+                        >
+                            <%= item.category %>
+                        </option>
+
+                    <% } %>
+
+                </select>
+            </div>
+
+            <div>
+                <label for="likes">Likes</label>
+
+                <input
+                    type="number"
+                    id="likes"
+                    name="likes"
+                    min="0"
+                    value="<%= quoteInfo.likes %>"
+                    required
+                >
+            </div>
+
+        </div>
+
+        <button type="submit">
+            Update Quote
+        </button>
+
+    </form>
+
+</section>
+
+<%- include("partials/footer.ejs") %>
