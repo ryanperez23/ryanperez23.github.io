@@ -1,80 +1,168 @@
 body {
-    background-color: #f5f7fa;
-    color: #222;
     font-family: Arial, sans-serif;
+    background-color: white;
+    color: #222;
     margin: 0;
-    min-height: 100vh;
 }
 
+/* Header */
 header {
-    background-color: #169bd5;
-    color: white;
-    padding: 30px;
-    margin-bottom: 30px;
+    background-color: white;
+    color: #222;
+    text-align: center;
+    padding: 30px 20px 10px;
 }
 
 header h1 {
-    font-weight: bold;
+    font-size: 42px;
+    font-weight: 500;
     margin-bottom: 15px;
 }
 
-main {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    min-height: 500px;
+header nav {
+    margin-bottom: 10px;
 }
 
-.comic-site {
+header nav a {
+    color: #169fc4;
+    text-decoration: none;
+}
+
+/* Main page */
+main {
+    width: 900px;
+    max-width: 90%;
+    margin: auto;
+    padding: 20px 0 40px;
+    background-color: white;
+}
+
+.center,
+.text-center {
+    text-align: center;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #1ca8ba;
+    border-color: #1ca8ba;
+}
+
+.btn-success {
+    background-color: #249c4b;
+    border-color: #249c4b;
+}
+
+.btn {
+    padding: 8px 16px;
+    font-size: 16px;
+}
+
+/* Comic site list */
+.comic-site,
+.site {
     margin: 30px 0;
 }
 
-.comic-site a {
+.comic-site h3,
+.site h3 {
+    font-size: 23px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.comic-site h3 a,
+.site h3 a {
+    color: black;
+    text-decoration: underline;
+}
+
+.comic-site > a,
+.site > a {
     font-size: 18px;
 }
 
+/* Divider */
+hr {
+    border: 0;
+    border-top: 2px solid #cccccc;
+    margin: 40px 0;
+    opacity: 1;
+}
+
+/* Headings */
+section h2 {
+    font-size: 38px;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+/* Comics */
 .comic {
-    margin: 40px auto;
+    text-align: center;
+    margin: 35px auto;
+}
+
+.comic h3 {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 5px;
 }
 
 .comic img,
-#randomComicImage {
+#randomComicImage,
+#randomImage,
+.selected-comic,
+.form-section img {
     display: block;
     max-width: 650px;
     width: 100%;
     height: auto;
     margin: 15px auto;
-    border-radius: 6px;
 }
 
-.comic-links {
-    margin-top: 10px;
+/* Forms */
+.form-section,
+.form-box {
+    max-width: 500px;
+    margin: 30px auto;
 }
 
-.form-section {
-    max-width: 650px;
+.form-section form,
+.form-box form {
+    max-width: 420px;
     margin: auto;
 }
 
-.form-section h2 {
-    text-align: center;
-    margin-bottom: 30px;
+.form-section .form-label {
+    font-weight: 400;
 }
 
-.selected-comic {
-    max-width: 600px;
-    width: 100%;
-    margin-bottom: 30px;
+.form-control,
+.form-select {
+    border: 1px solid #cccccc;
 }
 
-.comment {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+.form-section button,
+.form-box button {
+    display: block;
+    margin: 20px auto;
 }
 
+/* Comment modal */
+#commentList {
+    white-space: pre-line;
+}
+
+/* Footer */
 footer {
+    width: 500px;
+    max-width: 90%;
     text-align: center;
-    padding: 25px;
-    margin-top: 40px;
-    color: #666;
+    margin: 30px auto;
+    padding: 15px;
+}
+
+footer p {
+    margin: 0;
 }
