@@ -1,0 +1,64 @@
+<%- include("partials/header", { title: "My Favorite Comics" }) %>
+
+<section class="text-center">
+
+    <a href="/addComic" class="btn btn-primary">
+        Add Comic
+    </a>
+
+    <div class="comic-sites">
+
+        <% sites.forEach(site => { %>
+
+            <div class="comic-site">
+
+                <h3>
+                    <a href="/comicPage/<%= site.comicSiteId %>">
+                        <%= site.comicSiteName %>
+                    </a>
+                </h3>
+
+                <a
+                    href="<%= site.comicSiteUrl %>"
+                    target="_blank">
+                    <%= site.comicSiteUrl %>
+                </a>
+
+            </div>
+
+        <% }) %>
+
+    </div>
+
+    <hr>
+
+    <h2>Random Comic</h2>
+
+    <div id="randomComic">
+
+        <img
+            id="randomComicImage"
+            src="<%= randomComic.comicUrl %>"
+            alt="<%= randomComic.comicTitle %>">
+
+        <h3 id="randomComicTitle">
+            <%= randomComic.comicTitle %>
+        </h3>
+
+        <p id="randomComicName">
+            <%= randomComic.comicSiteName %>
+        </p>
+
+    </div>
+
+    <button
+        id="randomComicButton"
+        class="btn btn-success">
+
+        Display Random Comic
+
+    </button>
+
+</section>
+
+<%- include("partials/footer") %>
