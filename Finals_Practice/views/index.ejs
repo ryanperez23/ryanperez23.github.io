@@ -1,0 +1,188 @@
+<%- include("partials/header.ejs") %>
+
+<main class="container page-content">
+
+    <!-- page title -->
+    <h1>
+        My Favorite Comics
+    </h1>
+
+    <!-- go to add comic page -->
+    <p>
+
+        <a
+            class="btn btn-info"
+            href="/addComic">
+
+            Add Comic
+
+        </a>
+
+    </p>
+
+    <!-- display comic websites -->
+    <section class="site-list">
+
+        <% sites.forEach(site => { %>
+
+            <div class="site-item">
+
+                <!-- comic site name -->
+                <h3>
+
+                    <a href="/comicPage/<%= site.comicSiteId %>">
+
+                        <%= site.comicSiteName %>
+
+                    </a>
+
+                </h3>
+
+                <!-- comic website url -->
+                <a
+                    href="<%= site.comicSiteUrl %>"
+                    target="_blank">
+
+                    <%= site.comicSiteUrl %>
+
+                </a>
+
+            </div>
+
+        <% }) %>
+
+    </section>
+
+    <hr>
+
+    <!-- random comic section -->
+    <section id="randomComicSection">
+
+        <h2>
+            Random Comic
+        </h2>
+
+        <!-- display random comic -->
+        <% if (randomComic) { %>
+
+            <h3 id="randomTitle">
+
+                <%= randomComic.comicTitle %>
+
+            </h3>
+
+            <!-- random comic image -->
+            <img
+                id="randomImage"
+                src="<%= randomComic.comicUrl %>"
+                alt="<%= randomComic.comicTitle %>">
+
+            <!-- comic website name -->
+            <p id="randomSiteName">
+
+                <%= randomComic.comicSiteName %>
+
+            </p>
+
+        <% } %>
+
+        <!-- randomize comic using api -->
+        <button
+            class="btn btn-success"
+            type="button"
+            onclick="displayRandomComic()">
+
+            Display Random Comic
+
+        </button>
+
+    </section>
+
+
+    <!-- exam rubric -->
+    <table class="exam-rubric" border="1" width="600" cellpadding="10px">
+
+        <tbody>
+
+          <tr>
+            <th>#</th>
+            <th>Task Description</th>
+            <th>Points</th>
+          </tr>
+
+          <tr style="color:green">
+            <td>1</td>
+            <td>The <strong>Home</strong> page lists all comic names and clickable links to their corresponding websites from the "fe_comics_site" table. <br></td>
+            <td width="20" align="center">30</td>
+          </tr>
+
+          <tr style="color:green">
+            <td>2</td>
+            <td>The <strong>Home</strong> page displays a random comic strip retrieved from the "fe_comics" table, with its corresponding comic name <br></td>
+            <td width="20" align="center">25</td>
+          </tr>
+
+          <tr style="color:green">
+            <td>3</td>
+            <td>The <strong>Home</strong> page includes a "Display Random Comic" button to display a random comic and its name without reloading the page (using a Web API)<br></td>
+            <td width="20" align="center">30</td>
+          </tr>
+
+          <tr style="color:green">
+            <td>4</td>
+            <td>The <strong>Add Comic</strong> page allows user to add a new comic to the database. The values for the 'Web Site' dropdown menu come from database.<br></td>
+            <td width="20" align="center">30</td>
+          </tr>
+
+          <tr style="color:green">
+            <td>5</td>
+            <td>The <strong>Comic</strong> page lists all comic strips from the 'fe_comics' table for the Comic Name clicked on from the Home page. It should also include the comic title <br></td>
+            <td width="20" align="center">30</td>
+          </tr>
+
+          <tr style="color:green">
+            <td>6</td>
+            <td>The <strong>Comic</strong> page displays "View Comments" links below each comic strip. Use a Modal Window and a Web API to display all comments for each comic. <br></td>
+            <td width="20" align="center">30</td>
+          </tr>
+
+          <tr style="color:green">
+            <td>7</td>
+            <td>The <strong>Add Comment</strong> page displays the comic strip to add comments to, along with its title.<br></td>
+            <td width="20" align="center">20</td>
+          </tr>
+
+          <tr style="color:green">
+            <td>8</td>
+            <td>The <strong>Add Comment</strong> page allows users to add a comment to the comic strip selected.<br></td>
+            <td width="20" align="center">20</td>
+          </tr>
+
+          <tr style="color:green">
+            <td>9</td>
+            <td>Your submission has a nice style using Bootstrap or CSS in an external file with at least 10 properties.</td>
+            <td width="20" align="center">10</td>
+          </tr>
+
+          <tr style="color:green">
+            <td>10</td>
+            <td>This rubric is properly included and updated.</td>
+            <td width="20" align="center">2</td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td>TOTAL</td>
+            <td width="20" align="center">227</td>
+          </tr>
+
+        </tbody>
+
+    </table>
+
+    <%- include("partials/footer.ejs") %>
+
+</main>
+
+<!-- load javascript -->
+<script src="/js/script.js"></script>

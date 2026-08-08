@@ -1,0 +1,100 @@
+<%- include("partials/header.ejs") %>
+
+<main class="container page-content form-section">
+
+    <!-- add comment page -->
+    <h1>
+        Adding Comments
+    </h1>
+
+    <!-- display selected comic title -->
+    <h3>
+        <%= comic.comicTitle %>
+    </h3>
+
+    <!-- display selected comic image -->
+    <img
+        class="selected-comic"
+        src="<%= comic.comicUrl %>"
+        alt="<%= comic.comicTitle %>">
+
+    <!-- comment form -->
+    <form
+        action="/addComment/<%= comic.comicId %>"
+        method="POST">
+
+        <!-- keep comic website id -->
+        <input
+            type="hidden"
+            name="comicSiteId"
+            value="<%= comic.comicSiteId %>">
+
+        <!-- enter username -->
+        <div class="mb-3">
+
+            <label class="form-label">
+                Username:
+            </label>
+
+            <input
+                class="form-control"
+                type="text"
+                name="author"
+                required>
+
+        </div>
+
+        <!-- enter email -->
+        <div class="mb-3">
+
+            <label class="form-label">
+                Email Address:
+            </label>
+
+            <input
+                class="form-control"
+                type="email"
+                name="email"
+                required>
+
+        </div>
+
+        <!-- enter comment -->
+        <div class="mb-3">
+
+            <label class="form-label">
+                Comment:
+            </label>
+
+            <textarea
+                class="form-control"
+                name="comment"
+                rows="4"
+                required>
+            </textarea>
+
+        </div>
+
+        <!-- submit comment -->
+        <button
+            class="btn btn-success"
+            type="submit">
+
+            Submit Comment
+
+        </button>
+
+        <!-- return to comic page -->
+        <a
+            class="btn btn-secondary"
+            href="/comicPage/<%= comic.comicSiteId %>">
+
+            Cancel
+
+        </a>
+
+    </form>
+
+    <%- include("partials/footer.ejs") %>
+
+</main>

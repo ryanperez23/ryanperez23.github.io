@@ -1,0 +1,69 @@
+<%- include("partials/header.ejs") %>
+
+<!-- add comic form -->
+<h1>New Comic</h1>
+
+<form action="/addComic" method="POST" class="comic-form">
+
+    <!-- enter comic title -->
+    <div class="form-row">
+        <label for="comicTitle">Title:</label>
+
+        <input
+            type="text"
+            id="comicTitle"
+            name="comicTitle"
+            required>
+    </div>
+
+    <!-- enter comic image url -->
+    <div class="form-row">
+        <label for="comicUrl">URL:</label>
+
+        <input
+            type="text"
+            id="comicUrl"
+            name="comicUrl"
+            required>
+    </div>
+
+    <!-- select publish date -->
+    <div class="form-row">
+        <label for="comicDate">Publish Date:</label>
+
+        <input
+            type="date"
+            id="comicDate"
+            name="comicDate"
+            required>
+    </div>
+
+    <!-- select comic website -->
+    <div class="form-row">
+        <label for="comicSiteId">Web Site:</label>
+
+        <select
+            id="comicSiteId"
+            name="comicSiteId"
+            required>
+
+            <!-- display websites from database -->
+            <% sites.forEach(site => { %>
+
+                <option value="<%= site.comicSiteId %>">
+                    <%= site.comicSiteName %>
+                </option>
+
+            <% }) %>
+
+        </select>
+    </div>
+
+    <!-- submit new comic -->
+    <button type="submit" class="submit-button">
+        Submit New Comic
+    </button>
+
+</form>
+
+<%- include("partials/footer.ejs") %>
